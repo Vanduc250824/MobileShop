@@ -1,6 +1,6 @@
 ﻿namespace MobileShop
 {
-    partial class DanhmucSP
+    partial class DanhmucKH
     {
         /// <summary>
         /// Required designer variable.
@@ -28,34 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            danhsachSP = new DataGridView();
             label1 = new Label();
+            dsKhachHang = new DataGridView();
             btnDong = new Button();
-            ((System.ComponentModel.ISupportInitialize)danhsachSP).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dsKhachHang).BeginInit();
             SuspendLayout();
-            // 
-            // danhsachSP
-            // 
-            danhsachSP.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            danhsachSP.Location = new Point(81, 122);
-            danhsachSP.Name = "danhsachSP";
-            danhsachSP.RowHeadersWidth = 51;
-            danhsachSP.Size = new Size(631, 253);
-            danhsachSP.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(261, 42);
+            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(206, 66);
             label1.Name = "label1";
-            label1.Size = new Size(286, 38);
-            label1.TabIndex = 1;
-            label1.Text = "Danh mục sản phẩm";
+            label1.Size = new Size(396, 41);
+            label1.TabIndex = 0;
+            label1.Text = "DANH MỤC KHÁCH HÀNG";
+            // 
+            // dsKhachHang
+            // 
+            dsKhachHang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dsKhachHang.Location = new Point(106, 126);
+            dsKhachHang.Name = "dsKhachHang";
+            dsKhachHang.RowHeadersWidth = 51;
+            dsKhachHang.Size = new Size(611, 251);
+            dsKhachHang.TabIndex = 1;
             // 
             // btnDong
             // 
-            btnDong.Location = new Point(618, 396);
+            btnDong.Location = new Point(622, 394);
             btnDong.Name = "btnDong";
             btnDong.Size = new Size(94, 29);
             btnDong.TabIndex = 2;
@@ -63,25 +63,25 @@
             btnDong.UseVisualStyleBackColor = true;
             btnDong.Click += btnDong_Click;
             // 
-            // DanhmucSP
+            // DanhmucKH
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(btnDong);
+            Controls.Add(dsKhachHang);
             Controls.Add(label1);
-            Controls.Add(danhsachSP);
-            Name = "DanhmucSP";
-            Text = "Sản phẩm";
-            ((System.ComponentModel.ISupportInitialize)danhsachSP).EndInit();
+            Name = "DanhmucKH";
+            Text = "Khách hàng";
+            ((System.ComponentModel.ISupportInitialize)dsKhachHang).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private DataGridView danhsachSP;
         private Label label1;
+        private DataGridView dsKhachHang;
         private Button btnDong;
     }
 }

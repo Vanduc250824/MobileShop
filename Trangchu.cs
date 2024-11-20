@@ -13,12 +13,12 @@ namespace MobileShop
 {
     public partial class Trangchu : Form
     {
-        
+
 
         public Trangchu()
         {
             InitializeComponent();
-            
+
         }
 
         private void btnDanhmucSP_Click(object sender, EventArgs e)
@@ -27,9 +27,22 @@ namespace MobileShop
 
             this.Hide();
 
-            form.ShowDialog(); 
-            
+            form.ShowDialog();
+
         }
-        
+
+        private void btnDanhmucKH_Click(object sender, EventArgs e)
+        {
+            DanhmucKH form = new DanhmucKH();
+            this.Hide();
+            form.ShowDialog();
+        }
+
+        private void btnDonhang_Click(object sender, EventArgs e)
+        {
+            QuanlySP form = new QuanlySP();
+            this.Hide();
+            form.ShowDialog();
+        }
     }
 }

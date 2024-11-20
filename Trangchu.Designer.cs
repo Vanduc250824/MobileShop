@@ -51,6 +51,7 @@
             btnDanhmucKH.TabIndex = 1;
             btnDanhmucKH.Text = "Danh mục khách hàng";
             btnDanhmucKH.UseVisualStyleBackColor = true;
+            btnDanhmucKH.Click += btnDanhmucKH_Click;
             // 
             // btnDonhang
             // 
@@ -60,6 +61,7 @@
             btnDonhang.TabIndex = 2;
             btnDonhang.Text = "Quản lý đơn hàng";
             btnDonhang.UseVisualStyleBackColor = true;
+            btnDonhang.Click += btnDonhang_Click;
             // 
             // Trangchu
             // 

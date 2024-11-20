@@ -1,12 +1,12 @@
--- T?o c? s? d? li?u MobileShop
+﻿-- Tạo cơ sở dữ liệu MobileShop
 CREATE DATABASE MobileShop;
 GO
 
--- S? d?ng c? s? d? li?u MobileShop
+-- Sử dụng cơ sở dữ liệu MobileShop
 USE MobileShop;
 GO
 
--- B?ng S?n ph?m
+-- Bảng Sản phẩm
 CREATE TABLE Sanpham (
     sanphamid INT IDENTITY(1,1) PRIMARY KEY,
     tenSP NVARCHAR(100) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE Sanpham (
 );
 GO
 
--- B?ng Kh�ch h�ng
+-- Bảng Khách hàng
 CREATE TABLE Khachhang (
     khachhangid INT IDENTITY(1,1) PRIMARY KEY,
     ten NVARCHAR(100) NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE Khachhang (
 );
 GO
 
--- B?ng ??n h�ng
+-- Bảng Đơn hàng
 CREATE TABLE Donhang (
     id INT IDENTITY(1,1) PRIMARY KEY,
     khachhangid INT NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE Donhang (
 );
 GO
 
--- B?ng Ng??i d�ng
+-- Bảng Người dùng
 CREATE TABLE Nguoidung (
     id INT IDENTITY(1,1) PRIMARY KEY,
     tendangnhap NVARCHAR(50) NOT NULL UNIQUE,
@@ -57,7 +57,7 @@ VALUES
 ('Le Van C', '789 Nguyen Hue, HN', '0909123456'),
 ('Pham Thi D', '101 Le Lai, DN', '0912345678');
 go
--- Gi? ??nh khachhangid v� sanphamid ?� t?n t?i
+-- Giả định khachhangid và sanphamid đã tồn tại
 INSERT INTO Donhang (khachhangid, sanphamid, soluong, ngaymua)
 VALUES 
 (1, 1, 2, '2024-11-20'),
@@ -72,3 +72,4 @@ VALUES
 ('user2', 'hashed_password_789'),
 ('user3', 'hashed_password_000');
 SELECT COUNT(*) FROM Nguoidung WHERE tendangnhap = 'admin' AND matkhau = 'hashed_password_123';
+SElect * FROM Sanpham

@@ -4,36 +4,35 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MobileShop
 {
-
-    public partial class DanhmucSP : Form
+    public partial class DanhmucKH : Form
     {
-        private ControllerSP sanpham;
-        public DanhmucSP()
+
+        private ControllerUser nguoidung;
+        public DanhmucKH()
         {
             InitializeComponent();
-            sanpham = new ControllerSP(new Connection());
-            LoadProduct();
+            nguoidung = new ControllerUser(new Connection());
+            loadUser();
         }
-        public void LoadProduct()
+        public void loadUser()
         {
-            List<Sanpham> products = sanpham.GetAll();
-            danhsachSP.DataSource = products;
+            List<User> users = nguoidung.GetAll();
+            dsKhachHang.DataSource = users;
         }
 
         private void btnDong_Click(object sender, EventArgs e)
         {
-
             this.Close();
 
             Trangchu frmTrangchu = new Trangchu();
             frmTrangchu.Show();
         }
+
     }
 }
