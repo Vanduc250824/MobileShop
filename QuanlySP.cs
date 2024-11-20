@@ -16,7 +16,7 @@ namespace MobileShop
         public QuanlySP()
         {
             InitializeComponent();
-            controllerDonhang = new ControllerDonhang(new Connection()); // Khởi tạo controllerDonhang với kết nối
+            controllerDonhang = new ControllerDonhang(new Connection());
             LoadDonhangs(); // Gọi LoadDonhangs sau khi khởi tạo controllerDonhang
         }
 
@@ -50,22 +50,20 @@ namespace MobileShop
         {
             try
             {
-                int maKhach = int.Parse(txtMakh.Text);  // Lấy mã khách hàng từ TextBox
-                int maHang = int.Parse(txtMasp.Text);   // Lấy mã sản phẩm từ TextBox
-                int sl = int.Parse(txtSoluong.Text);    // Lấy số lượng từ TextBox
-                DateTime ngayMua = dateMua.Value;      // Lấy ngày mua từ DateTimePicker
+                int khachhangid = int.Parse(txtMakh.Text);
+                int sanphamid = int.Parse(txtMasp.Text);
+                int soluong = int.Parse(txtSoluong.Text);
+                DateTime ngaymua = dateMua.Value;
 
-                // Gọi phương thức thêm đơn hàng từ ControllerDonhang
-                bool success = controllerDonhang.AddDonhang(maKhach, maHang, sl, ngayMua);
-
-                if (success)
+                bool result = controllerDonhang.AddDonhang(khachhangid, sanphamid, soluong, ngaymua);
+                if (result)
                 {
                     MessageBox.Show("Thêm đơn hàng thành công!");
-                    LoadDonhangs();  // Load lại danh sách đơn hàng sau khi thêm
+                    LoadDonhangs(); // Cập nhật danh sách sau khi thêm
                 }
                 else
                 {
-                    MessageBox.Show("Thêm đơn hàng thất bại!");
+                    MessageBox.Show("Thêm đơn hàng thất bại.");
                 }
             }
             catch (Exception ex)
@@ -76,38 +74,26 @@ namespace MobileShop
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (dataGridViewDonhang.SelectedRows.Count > 0)
+            try
             {
-                try
+                int id = int.Parse(txtID.Text);
+                int soluong = int.Parse(txtSoluong.Text);
+                DateTime ngaymua = dateMua.Value;
+
+                bool result = controllerDonhang.UpdateDonhang(id, soluong, ngaymua);
+                if (result)
                 {
-                    // Lấy thông tin từ dòng đã chọn trong DataGridView
-                    int id = Convert.ToInt32(txtID.Text);  // Lấy ID từ TextBox
-                    int maKhach = Convert.ToInt32(txtMakh.Text);  // Mã khách hàng
-                    int maHang = Convert.ToInt32(txtMasp.Text);   // Mã sản phẩm
-                    int sl = Convert.ToInt32(txtSoluong.Text);    // Số lượng
-                    DateTime ngayMua = dateMua.Value;  // Ngày mua từ DateTimePicker
-
-                    // Gọi phương thức sửa đơn hàng trong ControllerDonhang
-                    bool success = controllerDonhang.UpdateDonhang(id, maKhach, maHang, sl, ngayMua);
-
-                    if (success)
-                    {
-                        MessageBox.Show("Sửa đơn hàng thành công!");
-                        LoadDonhangs();  // Load lại danh sách đơn hàng sau khi sửa
-                    }
-                    else
-                    {
-                        MessageBox.Show("Sửa đơn hàng thất bại!");
-                    }
+                    MessageBox.Show("Cập nhật đơn hàng thành công!");
+                    LoadDonhangs(); // Cập nhật danh sách sau khi sửa
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Lỗi: " + ex.Message);
+                    MessageBox.Show("Cập nhật đơn hàng thất bại.");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Vui lòng chọn đơn hàng để sửa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
 
@@ -137,6 +123,52 @@ namespace MobileShop
 
         private void btnTimkiem_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int id = int.Parse(txtID.Text);
+
+                List<Donhang> donhangs = controllerDonhang.SearchDonhang(id);
+                if (donhangs.Count > 0)
+                {
+                    dataGridViewDonhang.DataSource = null;
+                    dataGridViewDonhang.DataSource = donhangs; // Hiển thị kết quả tìm kiếm
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy đơn hàng khớp với ID.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int id = int.Parse(txtID.Text);
+
+                DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa đơn hàng này?", "Xác nhận", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    bool result = controllerDonhang.DeleteDonhang(id);
+                    if (result)
+                    {
+                        MessageBox.Show("Xóa đơn hàng thành công!");
+                        LoadDonhangs(); // Cập nhật danh sách sau khi xóa
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa đơn hàng thất bại.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
         }
     }
 }
